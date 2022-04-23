@@ -3,5 +3,14 @@ kind: DemoWeb
 metadata:
   name: demoweb2
 spec:
-  replicas: 2
-  gitrepo: "https://github.com/gbaeke/static-web.git"
+  replicas: 3
+  nodeport: 30100
+  backendName: gems-backend
+  backendImage: poonam3112/gems-backend:v1
+  backendContainerPort: 8090
+  backendNodePort: 30200
+
+  frontEndName: gems-fronend
+  frontEndImage: poonam3112/front-end-new:v1
+  frontEndContainerPort: 80
+  frontEndNodePort: 30100
