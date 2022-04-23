@@ -6,6 +6,23 @@ import yaml
 
 @kopf.on.create('baeke.info', 'v1', 'demowebs')
 def create_fn(spec, **kwargs):
+        # Converting Sectets.yaml to JSON
+    secrets_json = {}
+    with open("secrets.yaml") as infile:
+        secrets_json = yaml.load(infile, Loader=yaml.FullLoader)
+    # Converting Sectets.yaml to JSON
+    pv_json = {}
+    with open("pv.yaml") as infile:
+        pv_json = yaml.load(infile, Loader=yaml.FullLoader)
+    # Converting Sectets.yaml to JSON
+    pvc_json = {}
+    with open("pvc.yaml") as infile:
+        pvc_json = yaml.load(infile, Loader=yaml.FullLoader)
+    
+    kopf.adopt(secrets_json)
+    kopf.adopt(pv_json)
+    kopf.adopt(pvc_json)
+    
     name = kwargs["body"]["metadata"]["name"]
     print("Name is %s\n" % name)
 
@@ -195,6 +212,7 @@ def create_fn(spec, **kwargs):
     """)
 
     # Make it our child: assign the namespace, name, labels, owner references, etc.
+
 
     kopf.adopt(mysqldoc)
     kopf.adopt(mysqlserv)

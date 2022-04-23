@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv-volume
+  labels:
+    name: mysql-pv-volume
+spec:
+  storageClassName: standard
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data"
+
+    #   kind: PersistentVolume
+# apiVersion: v1
+# metadata:
+#   name: models-1-0-0
+#   labels:
+#     name: models-1-0-0
+# spec:
+#   capacity:
+#     storage: 200Gi
+#   storageClassName: standard
+#   accessModes:
+#     - ReadOnlyMany
+#   gcePersistentDisk:
+#     pdName: models-1-0-0
+#     fsType: ext4
+#     readOnly: true
